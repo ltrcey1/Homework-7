@@ -28,6 +28,12 @@ def VectorTwoNorm(vector):
 def FindSharedNode(bar_1,bar_2):
     if (bar_1.init_node==bar_2.init_node):
         return bar_1.init_node
+    elif (bar_1.end_node==bar_2.end_node):
+        return bar_1.end_node
+    elif (bar_1.end_node==bar_2.init_node):
+        return bar_1.edu_node
+    elif (bar_1.init_node==bar_2.end_node):
+        return bar_1.init_node
     else:
         sys.exit("The two input bars do not share a node")
     
@@ -53,21 +59,9 @@ def BarNodeToVector(origin_node,bar):
 # Convert to bars that meet at a node into vectors pointing away from that node
 def BarsToVectors(bar_1,bar_2):
     shared_node=FindSharedNode(bar_1, bar_2)
-    if shared_node is None:
-        return sys.exit("the two input bars do not share a node")
-    node1_bar_1, node2_bar_2=bar_1
-    node1_bar_2, node2_bar_1=bar_2
-    
-    if shared_node==node1_bar_1:
-        vector1=BarNodeToVector (node1_bar_1, node2_bar_1)
-    else: 
-        vector1=BarNodeToVector(node2_bar_2, node1_bar_1)
-    if shared_node==node1_bar_2:
-        vector2=BarNodeToVector(node1_bar_2, node2_bar_2)
-    else:
-        vector2 =BarNodeToVector(node2_bar_2, node1_bar_2)
-        
-    return vector1, vector2
+    vec_1=BarNodeToVector(shared_node, bar_1)
+    vec_2=BarNodeToVector(shared_node, bar_2)
+    return [vec_1, vec_2]
 
 # Cross product of two vectors
 def TwoDCrossProduct(vec1,vec2):
