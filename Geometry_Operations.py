@@ -76,7 +76,9 @@ def TwoDCrossProduct(vec1,vec2):
 
 # Dot product of two vectors
 def DotProduct(vec1,vec2):
-    dot_product=vec1[0]*vec2[0]+vec1[1]*vec2[1]
+    dot_product=0
+    for i in range(0,len(vec1)):
+        dot_product = vec1[i]*vec2[i]+dot_product
     return dot_product
 
 # Cosine of angle from local x vector direction to other vector
