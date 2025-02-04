@@ -31,7 +31,7 @@ def FindSharedNode(bar_1,bar_2):
     elif (bar_1.end_node==bar_2.end_node):
         return bar_1.end_node
     elif (bar_1.end_node==bar_2.init_node):
-        return bar_1.edu_node
+        return bar_1.end_node
     elif (bar_1.init_node==bar_2.end_node):
         return bar_1.init_node
     else:
