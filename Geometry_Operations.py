@@ -13,7 +13,9 @@ import sys
 # length of the beam
 def Length(bar):
     bar_node = bar.init_node
-    return
+    bar_vec= BarNodeToVector(bar_node,bar)
+    bar_length= VectorTwoNorm(bar_vec)
+    return bar_length
 
 # Find two norm (magnitude) of a vector
 def VectorTwoNorm(vector):
